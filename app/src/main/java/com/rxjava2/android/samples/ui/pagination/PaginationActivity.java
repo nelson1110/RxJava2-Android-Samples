@@ -65,7 +65,7 @@ public class PaginationActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        compositeDisposable.clear(); //清空一次性用品容器
+        compositeDisposable.clear(); //清空一次性用品容器，并把所有的绑定事件解除
     }
 
     /**
@@ -99,34 +99,35 @@ public class PaginationActivity extends AppCompatActivity {
     private void subscribeForData() {
 
         Disposable disposable = paginator
-                .onBackpressureDrop()
+                .onBackpressureDrop()//扔掉多余事件
                 .concatMap(new Function<Integer, Publisher<List<String>>>() {
                     @Override
                     public Publisher<List<String>> apply(@NonNull Integer page) throws Exception {
-                        loading = true;
-                        progressBar.setVisibility(View.VISIBLE);
-                        return dataFromNetwork(page);
+                        loading = true; //修改当前加载状态为true
+                        progressBar.setVisibility(View.VISIBLE);//显示进度条
+                        return dataFromNetwork(page); //模拟网络请求
                     }
                 })
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread()) //设置观察者的事件处理线程在主线程
                 .subscribe(new Consumer<List<String>>() {
                     @Override
-                    public void accept(@NonNull List<String> items) throws Exception {
-                        paginationAdapter.addItems(items);
+                    public void accept(@NonNull List<String> items) throws Exception { //观察者处理事件
+                        paginationAdapter.addItems(items);  //加载数据
                         paginationAdapter.notifyDataSetChanged();
-                        loading = false;
-                        progressBar.setVisibility(View.INVISIBLE);
+                        loading = false; //修改下载状态为false，就又可以进行加载了
+                        progressBar.setVisibility(View.INVISIBLE);//隐藏加载更多的进度条
                     }
                 });
 
-        compositeDisposable.add(disposable);
+        compositeDisposable.add(disposable); //将disposable加入容器
 
-        paginator.onNext(pageNumber);
+        paginator.onNext(pageNumber);// 加载第一页内容先
 
     }
 
     /**
      * Simulation of network data
+     * 模拟网络请求
      */
     private Flowable<List<String>> dataFromNetwork(final int page) {
         return Flowable.just(true)
