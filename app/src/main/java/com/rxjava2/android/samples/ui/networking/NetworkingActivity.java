@@ -96,7 +96,7 @@ public class NetworkingActivity extends AppCompatActivity {
                 .getObjectListObservable(User.class);
     }
 
-    /*
+    /**
     * This observable return the list of User who loves Football
     */
     private Observable<List<User>> getFootballFansObservable() {
@@ -105,7 +105,7 @@ public class NetworkingActivity extends AppCompatActivity {
                 .getObjectListObservable(User.class);
     }
 
-    /*
+    /**
     * This do the complete magic, make both network call
     * and then returns the list of user who loves both
     * Using zip operator to get both response at a time
@@ -150,6 +150,9 @@ public class NetworkingActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * 找出两个都喜欢的人
+     */
     private List<User> filterUserWhoLovesBoth(List<User> cricketFans, List<User> footballFans) {
         List<User> userWhoLovesBoth = new ArrayList<>();
         for (User cricketFan : cricketFans) {

@@ -26,27 +26,29 @@ import io.reactivex.processors.PublishProcessor;
 
 /**
  * Created by amitshekhar on 15/03/17.
+ * 分页加载的示例
  */
 
 public class PaginationActivity extends AppCompatActivity {
 
     public static final String TAG = PaginationActivity.class.getSimpleName();
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private PublishProcessor<Integer> paginator = PublishProcessor.create();
-    private PaginationAdapter paginationAdapter;
-    private RecyclerView recyclerView;
-    private ProgressBar progressBar;
-    private boolean loading = false;
-    private int pageNumber = 1;
-    private final int VISIBLE_THRESHOLD = 1;
-    private int lastVisibleItem, totalItemCount;
-    private LinearLayoutManager layoutManager;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();// 一次性物品容器
+    private PublishProcessor<Integer> paginator = PublishProcessor.create(); //一个事件水管（事件处理器）
+    private PaginationAdapter paginationAdapter;// 列表的adapter
+    private RecyclerView recyclerView; //列表
+    private ProgressBar progressBar;    //加载进度条
+    private boolean loading = false;    //是否正在加载
+    private int pageNumber = 1; // 当前页面
+    private final int VISIBLE_THRESHOLD = 1;    //保留的最少可见item，也就是说还有一个数据没加载出来的时候就可以出发刷新
+    private int lastVisibleItem, totalItemCount; //最后一条可见数据，总共的数据数
+    private LinearLayoutManager layoutManager;  // 列表的布局管理器
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagination);
+//        初始化控件
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         layoutManager = new LinearLayoutManager(this);
@@ -54,6 +56,8 @@ public class PaginationActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         paginationAdapter = new PaginationAdapter();
         recyclerView.setAdapter(paginationAdapter);
+
+
         setUpLoadMoreListener();
         subscribeForData();
     }
@@ -61,11 +65,12 @@ public class PaginationActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        compositeDisposable.clear();
+        compositeDisposable.clear(); //清空一次性用品容器
     }
 
     /**
      * setting listener to get callback for load more
+     * 设置刷新的触发
      */
     private void setUpLoadMoreListener() {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -78,10 +83,10 @@ public class PaginationActivity extends AppCompatActivity {
                 lastVisibleItem = layoutManager
                         .findLastVisibleItemPosition();
                 if (!loading
-                        && totalItemCount <= (lastVisibleItem + VISIBLE_THRESHOLD)) {
-                    pageNumber++;
-                    paginator.onNext(pageNumber);
-                    loading = true;
+                        && totalItemCount <= (lastVisibleItem + VISIBLE_THRESHOLD)) {//触发加载更多的条件
+                    pageNumber++; //增加页数
+                    paginator.onNext(pageNumber); //水管发送事件，事件内容为：需要请求的数据的页数为第pageNumber页
+                    loading = true;         //修改状态为加载中
                 }
             }
         });
@@ -89,6 +94,7 @@ public class PaginationActivity extends AppCompatActivity {
 
     /**
      * subscribing for data
+     * 订阅
      */
     private void subscribeForData() {
 

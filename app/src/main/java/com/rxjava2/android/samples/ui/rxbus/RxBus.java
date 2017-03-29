@@ -5,6 +5,7 @@ import io.reactivex.subjects.PublishSubject;
 
 /**
  * Created by amitshekhar on 06/02/17.
+ *
  */
 
 public class RxBus {
