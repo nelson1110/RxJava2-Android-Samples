@@ -25,6 +25,8 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * zip操作符的用法
+ * 因为这个事件是有限的，被观察者会发送完成事件，所以会自动完成不需要手动控制
  */
 public class ZipExampleActivity extends AppCompatActivity {
 
@@ -47,27 +49,31 @@ public class ZipExampleActivity extends AppCompatActivity {
         });
     }
 
-    /*
+    /**
     * Here we are getting two user list
     * One, the list of cricket fans
     * Another one, the list of football fans
     * Then we are finding the list of users who loves both
+     * 就是找出两个都喜欢的人（user）
     */
     private void doSomeWork() {
-        Observable.zip(getCricketFansObservable(), getFootballFansObservable(),
+        Observable.zip(getCricketFansObservable(), getFootballFansObservable(),//将两个Obervable放进去
                 new BiFunction<List<User>, List<User>, List<User>>() {
                     @Override
                     public List<User> apply(List<User> cricketFans, List<User> footballFans) throws Exception {
-                        return Utils.filterUserWhoLovesBoth(cricketFans, footballFans);
+                        return Utils.filterUserWhoLovesBoth(cricketFans, footballFans); //用来找出两个都喜欢的工具
                     }
                 })
                 // Run on a background thread
-                .subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io()) //处理数据的过程在后台线程
                 // Be notified on the main thread
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getObserver());
+                .observeOn(AndroidSchedulers.mainThread())//处理结果数据的在前台线程
+                .subscribe(getObserver());//订阅
     }
 
+    /**
+     * @return 找出喜欢Cricket的人
+     */
     private Observable<List<User>> getCricketFansObservable() {
         return Observable.create(new ObservableOnSubscribe<List<User>>() {
             @Override
@@ -80,6 +86,9 @@ public class ZipExampleActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * @return 找出喜欢足球的人
+     */
     private Observable<List<User>> getFootballFansObservable() {
         return Observable.create(new ObservableOnSubscribe<List<User>>() {
             @Override
@@ -92,6 +101,9 @@ public class ZipExampleActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * @return 一个订阅者
+     */
     private Observer<List<User>> getObserver() {
         return new Observer<List<User>>() {
 

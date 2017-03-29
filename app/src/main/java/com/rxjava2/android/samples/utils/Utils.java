@@ -116,6 +116,11 @@ public class Utils {
     }
 
 
+    /**
+     * @param cricketFans 喜欢cricket的人
+     * @param footballFans 喜欢足球的人
+     * @return 两个都喜欢的人的列表
+     */
     public static List<User> filterUserWhoLovesBoth(List<User> cricketFans, List<User> footballFans) {
         List<User> userWhoLovesBoth = new ArrayList<User>();
         for (User cricketFan : cricketFans) {
