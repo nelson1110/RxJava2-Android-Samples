@@ -53,8 +53,8 @@ public class IntervalExampleActivity extends AppCompatActivity {
     /**
      * simple example using interval to run task at an interval of 2 sec
      * which start immediately
-     * subscribeWith和subscribe的区别在于返回值不同，前者返回observable，后者返回disposable
-     * 这个例子中返回的Observable继承自Disposable，所以可以直接放到容器里
+     * subscribeWith和subscribe的区别在于返回值不同，前者返回observer，后者返回disposable
+     * 这个例子中返回的Observer继承自Disposable，所以可以直接放到容器里
      */
     private void doSomeWork() {
         disposables.add(getObservable()
