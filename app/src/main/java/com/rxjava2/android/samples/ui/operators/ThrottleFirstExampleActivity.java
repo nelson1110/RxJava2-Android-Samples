@@ -23,6 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by threshold on 2017/1/11.
+ * ThrottleFirst操作符的用法，ThrottleFirst（周期时间，时间单位），单位时间周期内的事件，选择第一个进行发送
  */
 
 public class ThrottleFirstExampleActivity extends AppCompatActivity {
@@ -66,6 +67,7 @@ public class ThrottleFirstExampleActivity extends AppCompatActivity {
             @Override
             public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
                 // send events with simulated time wait
+                //下面的注释是作者原注释，我觉得不太对，因为这个运行的结果是1,3，7被发送出来了
                 Thread.sleep(0);
                 emitter.onNext(1); // skip
                 emitter.onNext(2); // deliver

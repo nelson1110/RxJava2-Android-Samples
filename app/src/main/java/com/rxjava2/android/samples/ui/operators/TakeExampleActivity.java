@@ -18,6 +18,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * take操作符介绍，take（3）只取前三个事件
  */
 public class TakeExampleActivity extends AppCompatActivity {
 
@@ -40,8 +41,9 @@ public class TakeExampleActivity extends AppCompatActivity {
         });
     }
 
-    /* Using take operator, it only emits
+    /** Using take operator, it only emits
     * required number of values. here only 3 out of 5
+     * 使用take操作符，让它只取出前三个事件，然后就发送了onComplete事件结束订阅
     */
     private void doSomeWork() {
         getObservable()
@@ -53,10 +55,16 @@ public class TakeExampleActivity extends AppCompatActivity {
                 .subscribe(getObserver());
     }
 
+    /**
+     * @return 创建一个有五个事件的被观察者
+     */
     private Observable<Integer> getObservable() {
         return Observable.just(1, 2, 3, 4, 5);
     }
 
+    /**
+     * @return 创建一个观察者
+     */
     private Observer<Integer> getObserver() {
         return new Observer<Integer>() {
 

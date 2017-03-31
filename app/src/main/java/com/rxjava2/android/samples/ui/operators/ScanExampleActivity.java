@@ -17,6 +17,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Scan遍历 遍历操作符的用法
+ */
 public class ScanExampleActivity extends AppCompatActivity {
 
     private static final String TAG = ScanExampleActivity.class.getSimpleName();
@@ -39,6 +42,10 @@ public class ScanExampleActivity extends AppCompatActivity {
     }
 
     /* Using scan operator, it sends also the previous result */
+
+    /**
+     * 从第二个事件开始和第一个事件做处理，这里是相加，然后结果再与下一个事件处理，依次类推，遍历整个Observable
+     */
     private void doSomeWork() {
         getObservable()
                 // Run on a background thread
@@ -48,6 +55,8 @@ public class ScanExampleActivity extends AppCompatActivity {
                 .scan(new BiFunction<Integer, Integer, Integer>() {
                     @Override
                     public Integer apply(Integer int1, Integer int2) throws Exception {
+                        Log.d(TAG, "int1:" + int1);
+                        Log.d(TAG, "int2:" + int2);
                         return int1 + int2;
                     }
                 })

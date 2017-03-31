@@ -20,6 +20,8 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * 构造器timer的用法，这个应该不算是一个操作符，是一个Observable的构造器，用来构造一个延迟的仅发送一次
+ * 的Observable。
  */
 public class TimerExampleActivity extends AppCompatActivity {
 
@@ -55,6 +57,7 @@ public class TimerExampleActivity extends AppCompatActivity {
     }
 
     private Observable<? extends Long> getObservable() {
+        //创建了一个延迟observable，延迟两秒后发送一次特殊事件然后onComplete，注意：这里只能是long
         return Observable.timer(2, TimeUnit.SECONDS);
     }
 

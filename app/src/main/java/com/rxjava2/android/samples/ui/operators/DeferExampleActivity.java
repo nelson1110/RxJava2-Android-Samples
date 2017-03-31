@@ -17,6 +17,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * Created by amitshekhar on 30/08/16.
+ * 生成延时Observable，这个Observable可以等到有观察者绑定了才去发送事件
  */
 public class DeferExampleActivity extends AppCompatActivity {
 

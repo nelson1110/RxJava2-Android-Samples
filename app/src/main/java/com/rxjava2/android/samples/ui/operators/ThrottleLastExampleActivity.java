@@ -22,6 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by amitshekhar on 22/12/16.
+ * ThrottleLast操作符的用法，ThrottleLast（周期时间，时间单位），单位时间周期内的事件，选择最后一个进行发送
  */
 
 public class ThrottleLastExampleActivity extends AppCompatActivity {
@@ -65,6 +66,7 @@ public class ThrottleLastExampleActivity extends AppCompatActivity {
             @Override
             public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
                 // send events with simulated time wait
+                //这个下面的注释是准确的，上一个可能是作者复制过去的，所以没有改
                 Thread.sleep(0);
                 emitter.onNext(1); // skip
                 emitter.onNext(2); // deliver

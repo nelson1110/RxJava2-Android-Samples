@@ -41,13 +41,14 @@ public class ReduceExampleActivity extends AppCompatActivity {
 
     /*
      * simple example using reduce to add all the number
+     * 用reduce操作符来把所有的数字加起来
      */
     private void doSomeWork() {
         getObservable()
                 .reduce(new BiFunction<Integer, Integer, Integer>() {
                     @Override
                     public Integer apply(Integer t1, Integer t2) {
-                        return t1 + t2;
+                        return t1 + t2;//累加操作，如果是-就是累减操作。。依此类推
                     }
                 })
                 .subscribe(getObserver());

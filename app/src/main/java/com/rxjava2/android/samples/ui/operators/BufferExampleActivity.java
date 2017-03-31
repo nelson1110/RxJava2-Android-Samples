@@ -44,7 +44,7 @@ public class BufferExampleActivity extends AppCompatActivity {
      * simple example using buffer operator - bundles all emitted values into a list
      */
     private void doSomeWork() {
-
+        //创建多个缓冲区，每个能存三个数据，每次向后移动一个位置，每次发送的是一个缓冲区，也就是一个装有三个事件的数组
         Observable<List<String>> buffered = getObservable().buffer(3, 1);
 
         // 3 means,  it takes max of three from its start index and create list

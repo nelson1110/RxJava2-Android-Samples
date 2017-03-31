@@ -40,12 +40,16 @@ public class SingleObserverExampleActivity extends AppCompatActivity {
 
     /*
      * simple example using SingleObserver
+     * 只发送一次事件，发完就解除绑定，连onComplete都没有
      */
     private void doSomeWork() {
         Single.just("Amit")
                 .subscribe(getSingleObserver());
     }
 
+    /**
+     * @return 只能接收一个事件的observer，接的时候就dispose了
+     */
     private SingleObserver<String> getSingleObserver() {
         return new SingleObserver<String>() {
             @Override
@@ -66,6 +70,7 @@ public class SingleObserverExampleActivity extends AppCompatActivity {
                 textView.append(AppConstant.LINE_SEPARATOR);
                 Log.d(TAG, " onError : " + e.getMessage());
             }
+
         };
     }
 

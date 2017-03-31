@@ -17,6 +17,7 @@ import io.reactivex.functions.BiFunction;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * Flowable的简单用法，这里和Observable一样，没有体现Flowable的特性
  */
 public class FlowableExampleActivity extends AppCompatActivity {
 
@@ -45,7 +46,7 @@ public class FlowableExampleActivity extends AppCompatActivity {
     private void doSomeWork() {
 
         Flowable<Integer> observable = Flowable.just(1, 2, 3, 4);
-
+        //累加器初始值为50
         observable.reduce(50, new BiFunction<Integer, Integer, Integer>() {
             @Override
             public Integer apply(Integer t1, Integer t2) {

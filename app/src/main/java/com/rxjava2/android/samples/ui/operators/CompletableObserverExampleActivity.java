@@ -20,6 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * CompletableObserver 只能接受完成，错误等特殊事件
  */
 public class CompletableObserverExampleActivity extends AppCompatActivity {
 

@@ -16,6 +16,7 @@ import io.reactivex.subjects.PublishSubject;
 
 /**
  * Created by amitshekhar on 17/12/16.
+ * 这是最最最正常的水管模型，从哪监听，从哪就可以得到之后的所有事件
  */
 
 public class PublishSubjectExampleActivity extends AppCompatActivity {

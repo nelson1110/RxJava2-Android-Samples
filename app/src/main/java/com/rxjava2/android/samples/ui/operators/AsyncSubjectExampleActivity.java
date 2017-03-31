@@ -16,6 +16,7 @@ import io.reactivex.subjects.AsyncSubject;
 
 /**
  * Created by amitshekhar on 17/12/16.
+ * AsyncSubject的用法，这个东西只发送离onComplete最近的一个事件，和onComplete事件，同时也会处理别的错误
  */
 
 public class AsyncSubjectExampleActivity extends AppCompatActivity {

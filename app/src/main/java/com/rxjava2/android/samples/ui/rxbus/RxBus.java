@@ -13,6 +13,9 @@ public class RxBus {
     public RxBus() {
     }
 
+    /**
+     * 创建个公交车水管
+     */
     private PublishSubject<Object> bus = PublishSubject.create();
 
     public void send(Object o) {

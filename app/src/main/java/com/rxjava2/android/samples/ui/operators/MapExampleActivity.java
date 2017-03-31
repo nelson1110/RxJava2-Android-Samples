@@ -26,6 +26,8 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * 操作符map的用法，将一个Observable转换成另外一种类型的Observable
+ * 详情可以参考network那个class
  */
 public class MapExampleActivity extends AppCompatActivity {
 

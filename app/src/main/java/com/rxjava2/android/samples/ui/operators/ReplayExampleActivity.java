@@ -17,6 +17,7 @@ import io.reactivex.subjects.PublishSubject;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * 重播操作符，就是让下个订阅者能看一会重播
  */
 public class ReplayExampleActivity extends AppCompatActivity {
 
@@ -45,9 +46,8 @@ public class ReplayExampleActivity extends AppCompatActivity {
     private void doSomeWork() {
 
         PublishSubject<Integer> source = PublishSubject.create();
-        ConnectableObservable<Integer> connectableObservable = source.replay(3); // bufferSize = 3 to retain 3 values to replay
-        connectableObservable.connect(); // connecting the connectableObservable
-
+        ConnectableObservable<Integer> connectableObservable = source.replay(3); // bufferSize = 3 to retain 3 values to replay缓存三个事件
+        connectableObservable.connect(); // connecting the connectableObservable手动让Observable开始发送数据
         connectableObservable.subscribe(getFirstObserver());
 
         source.onNext(1);

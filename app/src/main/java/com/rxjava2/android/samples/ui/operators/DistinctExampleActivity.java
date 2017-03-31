@@ -17,6 +17,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * Created by techteam on 13/09/16.
+ * distinct操作符，可以给Observable里的事件去重
  */
 public class DistinctExampleActivity extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class DistinctExampleActivity extends AppCompatActivity {
     private void doSomeWork() {
 
         getObservable()
-                .distinct()
+                .distinct()//就是去重操作
                 .subscribe(getObserver());
     }
 

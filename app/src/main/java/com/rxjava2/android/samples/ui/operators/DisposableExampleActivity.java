@@ -28,7 +28,7 @@ public class DisposableExampleActivity extends AppCompatActivity {
     private static final String TAG = DisposableExampleActivity.class.getSimpleName();
     Button btn;
     TextView textView;
-    private final CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();//disposable容器
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class DisposableExampleActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         disposables.clear(); // do not send event after activity has been destroyed
+        //activity销毁后不再发送事件
     }
 
     /*

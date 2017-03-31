@@ -41,16 +41,18 @@ public class ReplaySubjectExampleActivity extends AppCompatActivity {
 
     /* ReplaySubject emits to any observer all of the items that were emitted
      * by the source Observable, regardless of when the observer subscribes.
+     * 就是不管从哪订阅，都会获得全部的事件，即使从onComplete后订阅也一样
      */
     private void doSomeWork() {
 
         ReplaySubject<Integer> source = ReplaySubject.create();
 
-        source.subscribe(getFirstObserver()); // it will get 1, 2, 3, 4
+//        source.subscribe(getFirstObserver()); // it will get 1, 2, 3, 4
 
         source.onNext(1);
         source.onNext(2);
         source.onNext(3);
+        source.subscribe(getFirstObserver());
         source.onNext(4);
         source.onComplete();
 

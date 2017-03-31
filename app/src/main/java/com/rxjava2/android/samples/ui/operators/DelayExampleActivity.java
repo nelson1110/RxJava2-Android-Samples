@@ -45,6 +45,7 @@ public class DelayExampleActivity extends AppCompatActivity {
 
     /*
      * simple example using delay to emit after 2 second
+     * 延时两秒再发送事件
      */
     private void doSomeWork() {
         getObservable().delay(2, TimeUnit.SECONDS)

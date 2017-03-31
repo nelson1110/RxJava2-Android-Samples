@@ -16,6 +16,7 @@ import io.reactivex.subjects.BehaviorSubject;
 
 /**
  * Created by amitshekhar on 17/12/16.
+ * BehaviorSubject会先把绑定观察者时最近的一个事件也返回回去，然后也返回后续的事件
  */
 
 public class BehaviorSubjectExampleActivity extends AppCompatActivity {

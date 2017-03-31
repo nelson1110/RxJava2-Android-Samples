@@ -45,6 +45,7 @@ public class ConcatExampleActivity extends AppCompatActivity {
      * here - first "A1", "A2", "A3", "A4" and then "B1", "B2", "B3"
      * first all from the first Observable and then
      * all from the second Observable all in order
+     * 连接操作符，会把两个Observable里的内容拼接到一起，且保证输出顺序
      */
     private void doSomeWork() {
         final String[] aStrings = {"A1", "A2", "A3", "A4"};

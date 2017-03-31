@@ -43,6 +43,7 @@ public class MergeExampleActivity extends AppCompatActivity {
      * the order of Observable.
      * It will emit all the 7 values may not be in order
      * Ex - "A1", "B1", "A2", "A3", "A4", "B2", "B3" - may be anything
+     * 将两个Observable混合到一起，但是不能保证输出顺序
      */
     private void doSomeWork() {
         final String[] aStrings = {"A1", "A2", "A3", "A4"};

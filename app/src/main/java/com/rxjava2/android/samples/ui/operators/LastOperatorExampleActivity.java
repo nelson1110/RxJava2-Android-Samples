@@ -40,6 +40,9 @@ public class LastOperatorExampleActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 只返回这个Observable的最后一个事件，如果这个Observable已经完成，就只返回默认事件
+     */
     private void doSomeWork() {
         getObservable().last("A1") // the default item ("A1") to emit if the source ObservableSource is empty
                 .subscribe(getObserver());

@@ -41,12 +41,12 @@ public class RxBusActivity extends AppCompatActivity {
 
         disposables.add(((MyApplication) getApplication())
                 .bus()
-                .toObserverable()
+                .toObserverable()//获取到公交车的这个Observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Object>() {
                     @Override
-                    public void accept(Object object) throws Exception {
+                    public void accept(Object object) throws Exception {//判断事件类型
                         if (object instanceof Events.AutoEvent) {
                             textView.setText("Auto Event Received");
                         } else if (object instanceof Events.TapEvent) {

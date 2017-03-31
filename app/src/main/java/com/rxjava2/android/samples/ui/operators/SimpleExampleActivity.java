@@ -18,6 +18,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * 最简单的demo，展示创建一个仅两个事件的Observable
  */
 public class SimpleExampleActivity extends AppCompatActivity {
 
@@ -52,6 +53,9 @@ public class SimpleExampleActivity extends AppCompatActivity {
                 .subscribe(getObserver());
     }
 
+    /**
+     * @return 这个Observable仅包含两个事件
+     */
     private Observable<String> getObservable() {
         return Observable.just("Cricket", "Football");
     }

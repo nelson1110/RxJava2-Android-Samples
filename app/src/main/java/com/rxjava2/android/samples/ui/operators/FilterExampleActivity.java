@@ -18,6 +18,7 @@ import io.reactivex.functions.Predicate;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * 过滤器
  */
 public class FilterExampleActivity extends AppCompatActivity {
 
@@ -45,10 +46,10 @@ public class FilterExampleActivity extends AppCompatActivity {
      *
      */
     private void doSomeWork() {
-        Observable.just(1, 2, 3, 4, 5, 6)
-                .filter(new Predicate<Integer>() {
+        Observable.just(1, 2, 3, 4, 5, 6)//创建了一个有6个数字的被观察者
+                .filter(new Predicate<Integer>() {//添加筛选器
                     @Override
-                    public boolean test(Integer integer) throws Exception {
+                    public boolean test(Integer integer) throws Exception {//对每个事件进行筛选，返回true的保留
                         return integer % 2 == 0;
                     }
                 })

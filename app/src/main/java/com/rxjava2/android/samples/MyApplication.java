@@ -17,7 +17,7 @@ import io.reactivex.functions.Consumer;
 public class MyApplication extends Application {
 
     public static final String TAG = "MyApplication";
-    private RxBus bus;
+    private RxBus bus;//全局车
 
     @Override
     public void onCreate() {
@@ -30,7 +30,7 @@ public class MyApplication extends Application {
     }
 
     public void sendAutoEvent() {
-        Observable.timer(2, TimeUnit.SECONDS)
+        Observable.timer(2, TimeUnit.SECONDS)//两秒后发送一次自动事件
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {

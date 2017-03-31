@@ -22,6 +22,8 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by amitshekhar on 22/12/16.
+ * debounce防抖，当一个事件发送出来后，约定时间内没有再次出发则发送这个事件，如果再次触发了，则重新计算时间。
+ * 注意和throttle的区别
  */
 
 public class DebounceExampleActivity extends AppCompatActivity {

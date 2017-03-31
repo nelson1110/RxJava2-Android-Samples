@@ -20,6 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * 创建Observable的操作符，interval，用于创建周期性发送事件的Observable
  */
 public class IntervalExampleActivity extends AppCompatActivity {
 
@@ -46,12 +47,14 @@ public class IntervalExampleActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        disposables.clear(); // clearing it : do not emit after destroy
+        disposables.clear(); // clearing it : do not emit after destroy销毁后不再发送事件
     }
 
-    /*
+    /**
      * simple example using interval to run task at an interval of 2 sec
      * which start immediately
+     * subscribeWith和subscribe的区别在于返回值不同，前者返回observable，后者返回disposable
+     * 这个例子中返回的Observable继承自Disposable，所以可以直接放到容器里
      */
     private void doSomeWork() {
         disposables.add(getObservable()
@@ -63,6 +66,7 @@ public class IntervalExampleActivity extends AppCompatActivity {
     }
 
     private Observable<? extends Long> getObservable() {
+        //创建一个延迟0秒，每两秒发送一次事件的observable
         return Observable.interval(0, 2, TimeUnit.SECONDS);
     }
 

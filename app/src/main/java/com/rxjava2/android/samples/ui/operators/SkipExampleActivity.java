@@ -18,6 +18,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by amitshekhar on 27/08/16.
+ * skip操作符介绍，skip（2）跳过前两个事件
  */
 public class SkipExampleActivity extends AppCompatActivity {
 
@@ -40,8 +41,9 @@ public class SkipExampleActivity extends AppCompatActivity {
         });
     }
 
-    /* Using skip operator, it will not emit
+    /** Using skip operator, it will not emit
     * the first 2 values.
+     * 使用skip操作符，跳过前两个事件
     */
     private void doSomeWork() {
         getObservable()
