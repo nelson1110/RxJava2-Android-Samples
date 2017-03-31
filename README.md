@@ -1,20 +1,20 @@
 <img src=https://raw.githubusercontent.com/amitshekhariitbhu/RxJava2-Android-Samples/master/assets/rxjava2.png >
 
-# Learning RxJava 2 for Android by example
+# 通过Example来学习RxJava2 for Android
 
 [![Mindorks](https://img.shields.io/badge/mindorks-opensource-blue.svg)](https://mindorks.com/open-source-projects)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-RxJava2%20Android%20Samples-blue.svg?style=flat)](https://android-arsenal.com/details/3/4314)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/Apache-2.0)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/LICENSE)
 
-## How to use RxJava 2 in Android Application
-## How to migrate from RxJava 1 to RxJava 2
+## 如何在Android 应用中使用RxJava2
+## 如何从 RxJava 1 迁移到 RxJava 2
 
-### This project is for : 
-* who is migrating to RxJava 2 
-* or just started with RxJava.
+### 谁适合阅读这个项目 : 
+* 正在迁移到RxJava2的人 
+* 刚刚开始学习RxJava2的人
 
-### Just Build the project and start learning RxJava by examples.
+### 只需要构建编译这个项目，赶紧开始通过example来学习吧.
 
 RxJava 2.0 has been completely rewritten from scratch on top of the Reactive-Streams specification. The specification itself has evolved out of RxJava 1.x and provides a common baseline for reactive systems and libraries.
 
@@ -28,13 +28,13 @@ io.reactivex.rxjava2:rxjava:2.x.y and classes are accessible below io.reactivex.
 
 Users switching from 1.x to 2.x have to re-organize their imports, but carefully.
 
-### Using RxJava 2.0 Library in your application
+### 在你的app中引入RxJava2
 
-Add this in your build.gradle
+在你的build.gradle中加入下面的代码
 ```groovy
 compile 'io.reactivex.rxjava2:rxjava:2.0.6'
 ```
-If you are using RxAndroid also, then add the following
+如果你也正在用RxAndroid, 你还需要加入下面的代码
 ```groovy
 compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 ```
@@ -56,18 +56,18 @@ been removed.
 
 * And many others android examples
 
-# Quick Look on few changes done in RxJava2 over RxJava1
+# 简单来看一下RxJava2和RxJava1的区别
 
 RxJava1 -> RxJava2
 
-* `onCompleted` -> `onComplete` - without the trailing d
+* `onCompleted` -> `onComplete` - 没有了后面的字母 d
 * `Func1` -> `Function`
 * `Func2` -> `BiFunction`
 * `CompositeSubscription` -> `CompositeDisposable`
-* `limit` operator has been removed - Use `take` in RxJava2
+* `limit` 这个操作符移除了，改用 -  `take` in RxJava2
 * and much more.
 
-# Operators :
+# 操作符 :
 * `Map` -> transform the items emitted by an Observable by applying a function to each item
 * `Zip` -> combine the emissions of multiple Observables together via a specified function and emit single items for each combination based on the results of this function
 * `Filter` -> emit only those items from an Observable that pass a predicate test
@@ -81,7 +81,7 @@ RxJava1 -> RxJava2
 * `Merge` -> combine multiple Observables into one by merging their emissions
 
 
-# Highlights of the examples :
+# example中的亮点 :
 
 * [DisposableExampleActivity](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/app/src/main/java/com/rxjava2/android/samples/ui/operators/DisposableExampleActivity.java) - Using `CompositeDisposable`
 * [FlowableExampleActivity](https://github.com/amitshekhariitbhu/RxJava2-Android-Samples/blob/master/app/src/main/java/com/rxjava2/android/samples/ui/operators/FlowableExampleActivity.java) - Using `Flowable` and `reduce` operator
